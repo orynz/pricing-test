@@ -6,9 +6,11 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
 const api = axios.create({
-  // 배포 환경과 로컬 환경 모두에서 작동하도록 상대 경로 사용
-  baseURL: import.meta.env.DEV ? 'http://localhost:8000/api/v1' : '/api/v1',
+  // 호스트네임이 localhost가 아니면 무조건 상대 경로 '/api/v1' 사용
+  baseURL: isLocalhost ? 'http://localhost:8000/api/v1' : '/api/v1',
 });
 
 // 모든 요청에 JWT와 Project ID 추가
