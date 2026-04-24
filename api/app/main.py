@@ -30,15 +30,15 @@ def get_application() -> FastAPI:
         allow_headers=["*"],
     )
 
-    @_app.get("/")
+    @_app.get(f"{settings.API_V1_STR}/")
     async def root():
         return {"message": "Welcome to Secure Core Platform API"}
 
-    @_app.get("/health")
+    @_app.get(f"{settings.API_V1_STR}/health")
     async def health_check():
         return {"status": "healthy"}
 
-    @_app.get("/test")
+    @_app.get(f"{settings.API_V1_STR}/test")
     async def test_page(request: Request):
         return templates.TemplateResponse("test_client.html", {
             "request": request,

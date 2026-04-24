@@ -13,12 +13,14 @@ dependencies = [
     "httpx>=0.28.1",
     "jinja2>=3.1.6",
     "passlib[bcrypt]>=1.7.4",
+    "polar-sdk>=0.31.3",
     "psycopg2-binary>=2.9.12",
     "pydantic>=2.13.3",
     "pydantic-settings>=2.14.0",
     "pyjwt>=2.12.1",
     "python-multipart>=0.0.26",
     "sqlalchemy>=2.0.49",
+    "standardwebhooks>=1.0.1",
     "uvicorn>=0.46.0",
 ]
 
