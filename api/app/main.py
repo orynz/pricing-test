@@ -9,7 +9,7 @@ from app.models import user, subscription, license, device, plan, order, entitle
 import os
 
 # Create tables on startup
-Base.metadata.create_all(bind=engine)
+# Base.metadata.create_all(bind=engine) # 서버리스 환경에서는 주석 처리 (마이그레이션 도구 권장)
 
 def get_application() -> FastAPI:
     _app = FastAPI(
