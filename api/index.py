@@ -1,8 +1,17 @@
 import sys
 import os
 
-# backend 디렉토리를 Python 경로에 추가하여 임포트가 가능하게 합니다.
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "backend"))
+# 현재 파일(api/index.py)의 부모 디렉토리를 기준으로 backend 경로 설정
+base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+backend_path = os.path.join(base_path, "backend")
 
-# 실제 FastAPI 앱 인스턴스를 가져옵니다.
-from app.main import app
+if backend_path not in sys.path:
+    sys.path.append(backend_path)
+
+# FastAPI 앱 임포트
+try:
+    from app.main import app
+except ImportError as e:
+    print(f"Import Error: {e}")
+    print(f"Current sys.path: {sys.path}")
+    raise e
