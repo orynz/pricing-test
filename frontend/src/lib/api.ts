@@ -6,11 +6,10 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-
 const api = axios.create({
-  // 호스트네임이 localhost가 아니면 무조건 상대 경로 '/api/v1' 사용
-  baseURL: isLocalhost ? 'http://localhost:8000/api/v1' : '/api/v1',
+  // 도메인 정보를 완전히 제거하고 상대 경로만 사용합니다.
+  // 로컬 개발 시에는 vite.config.ts의 proxy 설정을 통해 백엔드로 전달됩니다.
+  baseURL: '/api/v1',
 });
 
 // 모든 요청에 JWT와 Project ID 추가
